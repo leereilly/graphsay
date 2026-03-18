@@ -56,6 +56,7 @@ npx animated-contribution-graph-message --message "HELLO WORLD" --format svg
 | `--mode <MODE>` | `scroll` or `static` | `scroll` |
 | `--speed <SECONDS>` | Step interval in seconds | `0.15` |
 | `--no-transparent` | Add a background color instead of transparent | transparent |
+| `--no-loop` | Disable looping (SVG plays once and freezes; GIF does not loop) | loops |
 
 ### Examples
 

@@ -5,7 +5,7 @@ import { generateGrid, NUM_COLS, NUM_ROWS } from "../src/grid.js";
 import { GITHUB_LIGHT, GITHUB_DARK } from "../src/palette.js";
 import { renderText } from "../src/text.js";
 
-function makeTestSvg(dark: boolean, transparent: boolean = true): string {
+function makeTestSvg(dark: boolean, transparent: boolean = true, loop: boolean = true): string {
   const grid = generateGrid();
   const sprite = renderText("HI");
   const result = computeScrollAnimation(
@@ -24,6 +24,7 @@ function makeTestSvg(dark: boolean, transparent: boolean = true): string {
     11,
     3,
     transparent,
+    loop,
   );
 }
 
@@ -118,5 +119,23 @@ describe("svg", () => {
     expect(svg).toContain("var(--bg)");
     expect(svg).toContain("--bg: #ffffff");
     expect(svg).toContain("--bg: #0d1117");
+  });
+
+  it("loop true uses repeatCount indefinite and no fill freeze", () => {
+    const svg = makeTestSvg(false, true, true);
+    expect(svg).toContain('repeatCount="indefinite"');
+    expect(svg).not.toContain('fill="freeze"');
+  });
+
+  it("loop false uses repeatCount 1 and fill freeze", () => {
+    const svg = makeTestSvg(false, true, false);
+    expect(svg).toContain('repeatCount="1"');
+    expect(svg).toContain('fill="freeze"');
+    expect(svg).not.toContain('repeatCount="indefinite"');
+  });
+
+  it("default loop behavior is indefinite", () => {
+    const svg = makeTestSvg(false);
+    expect(svg).toContain('repeatCount="indefinite"');
   });
 });

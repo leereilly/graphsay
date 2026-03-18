@@ -27,6 +27,7 @@ export interface CliOptions {
   mode: Mode;
   speed: number;
   transparent: boolean;
+  loop?: boolean;
 }
 
 function formatExtension(fmt: Format): string {
@@ -92,6 +93,10 @@ export function parseCli(argv: string[]): CliOptions {
     .option(
       "--no-transparent",
       "Add a background color instead of transparent",
+    )
+    .option(
+      "--no-loop",
+      "Disable looping (SVG plays once and freezes; GIF does not loop)",
     );
 
   program.parse(argv);
@@ -127,10 +132,12 @@ export function parseCli(argv: string[]): CliOptions {
     mode: opts.mode as Mode,
     speed: opts.speed,
     transparent: opts.transparent !== false,
+    loop: opts.loop !== false,
   };
 }
 
 export async function run(args: CliOptions): Promise<void> {
+  const loop = args.loop ?? true;
   const grid = generateGrid();
   const sprite = renderText(args.message);
 
@@ -203,6 +210,7 @@ export async function run(args: CliOptions): Promise<void> {
         11,
         3,
         args.transparent,
+        loop,
       );
       fs.writeFileSync(outputPath, svgContent);
       console.log(`Created ${outputPath}`);
@@ -228,6 +236,7 @@ export async function run(args: CliOptions): Promise<void> {
           args.format as FfmpegFormat,
           20,
           animResult.duration,
+          loop,
         );
 
         console.log(`Created ${outputPath}`);

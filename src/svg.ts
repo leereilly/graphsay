@@ -83,6 +83,7 @@ export function renderSvg(
   cellSize: number,
   cellGap: number,
   transparent: boolean = true,
+  loop: boolean = true,
 ): string {
   const pitch = cellSize + cellGap;
   const svgWidth = NUM_COLS * pitch - cellGap;
@@ -158,7 +159,9 @@ export function renderSvg(
           svg += `  <rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="2" ry="2" fill="${midpointColor}">\n`;
 
           const { keyTimes, values } = buildAnimateAttributes(kfs, duration);
-          svg += `    <animate attributeName="fill" dur="${duration}s" repeatCount="1" fill="freeze" keyTimes="${keyTimes}" values="${values}" calcMode="discrete"/>\n`;
+          const repeatCount = loop ? "indefinite" : "1";
+          const fillAttr = loop ? "" : ' fill="freeze"';
+          svg += `    <animate attributeName="fill" dur="${duration}s" repeatCount="${repeatCount}"${fillAttr} keyTimes="${keyTimes}" values="${values}" calcMode="discrete"/>\n`;
 
           svg += "  </rect>\n";
         }

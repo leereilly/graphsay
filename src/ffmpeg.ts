@@ -19,44 +19,9 @@ export function ffmpegExport(
   format: FfmpegFormat,
   fps: number,
   _duration: number,
+  loop: boolean = true,
 ): void {
-  const inputPattern = path.join(framesDir, "frame_%05d.png");
-
-  let args: string[];
-  switch (format) {
-    case "gif":
-      args = [
-        "-y",
-        "-framerate", String(fps),
-        "-i", inputPattern,
-        "-vf", "split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse",
-        outputPath,
-      ];
-      break;
-    case "webp":
-      args = [
-        "-y",
-        "-framerate", String(fps),
-        "-i", inputPattern,
-        "-vcodec", "libwebp",
-        "-lossless", "1",
-        "-loop", "0",
-        outputPath,
-      ];
-      break;
-    case "mp4":
-      args = [
-        "-y",
-        "-framerate", String(fps),
-        "-i", inputPattern,
-        "-vf", "pad=ceil(iw/2)*2:ceil(ih/2)*2",
-        "-c:v", "libx264",
-        "-pix_fmt", "yuv420p",
-        "-movflags", "+faststart",
-        outputPath,
-      ];
-      break;
-  }
+  const args = buildFfmpegArgs(framesDir, outputPath, format, fps, loop);
 
   try {
     execFileSync("ffmpeg", args, { stdio: "pipe" });
@@ -71,6 +36,7 @@ export function buildFfmpegArgs(
   outputPath: string,
   format: FfmpegFormat,
   fps: number,
+  loop: boolean = true,
 ): string[] {
   const inputPattern = path.join(framesDir, "frame_%05d.png");
 
@@ -81,6 +47,7 @@ export function buildFfmpegArgs(
         "-framerate", String(fps),
         "-i", inputPattern,
         "-vf", "split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse",
+        "-loop", loop ? "0" : "-1",
         outputPath,
       ];
     case "webp":
