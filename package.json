@@ -1,0 +1,27 @@
+{
+  "name": "animated-contribution-graph-message",
+  "version": "1.0.0",
+  "description": "Generate animated GitHub-style contribution graph messages as SVG, GIF, WebP, or MP4",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "animated-contribution-graph-message": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "dev": "vitest"
+  },
+  "keywords": ["github", "contribution", "graph", "animation", "svg", "gif", "mp4"],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  }
+}

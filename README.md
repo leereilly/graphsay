@@ -6,36 +6,41 @@ Generate animated GitHub-style contribution graph messages as SVG, GIF, WebP, or
 
 ### Prerequisites
 
-- [Rust toolchain](https://rustup.rs/) (install via `rustup`)
+- [Node.js](https://nodejs.org/) v18 or later
 - [ffmpeg](https://ffmpeg.org/) (only needed for GIF, WebP, and MP4 output)
+
+### Run with npx (no install needed)
+
+```bash
+npx animated-contribution-graph-message -m "HELLO WORLD" -f svg
+```
+
+### Install globally
+
+```bash
+npm install -g animated-contribution-graph-message
+```
 
 ### Install from source
 
 ```bash
 git clone https://github.com/leereilly/contribuart.git
 cd contribuart/animated-contribution-graph-message
-cargo install --path .
+npm install
+npm run build
 ```
-
-### Build only
-
-```bash
-cargo build --release
-```
-
-The binary will be at `target/release/animated-contribution-graph-message`.
 
 ## Usage
 
 ```bash
-animated-contribution-graph-message --message "HELLO WORLD" --format svg
+npx animated-contribution-graph-message --message "HELLO WORLD" --format svg
 ```
 
 ### Options
 
 | Flag | Description | Default |
 |------|-------------|---------|
-| `-m, --message <TEXT>` | Message to display (required) | — |
+| `-m, --message <TEXT>` | Message to display (required, max 500 chars) | — |
 | `-t, --theme <THEME>` | `light`, `dark`, or `both` | `both` |
 | `-f, --format <FORMAT>` | `svg`, `gif`, `webp`, `mp4` | `mp4` |
 | `-o, --output <PATH>` | Output file path | auto-generated |
@@ -47,51 +52,51 @@ animated-contribution-graph-message --message "HELLO WORLD" --format svg
 
 ```bash
 # SVG with light theme (scroll)
-animated-contribution-graph-message -m "HELLO WORLD" -f svg -t light
+npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t light
 ```
 
 ![Light theme scroll](examples/hello-world-light-scroll.gif)
 
 ```bash
 # SVG with both light/dark mode support
-animated-contribution-graph-message -m "HELLO WORLD" -f svg -t both
+npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t both
 ```
 
 ![Both themes scroll](examples/hello-world-both-scroll.gif)
 
 ```bash
 # Static centered text (dark theme)
-animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --mode static
+npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --mode static
 ```
 
 ![Dark theme static](examples/hello-world-dark-static.gif)
 
 ```bash
 # Custom color
-animated-contribution-graph-message -m "RUST" -f svg --color "#ff6600"
+npx animated-contribution-graph-message -m "RUST" -f svg --color "#ff6600"
 ```
 
 ![Custom color](examples/rust-custom-color.gif)
 
 ```bash
 # GIF output (requires ffmpeg)
-animated-contribution-graph-message -m "HELLO" -f gif -t light
+npx animated-contribution-graph-message -m "HELLO" -f gif -t light
 ```
 
 ![GIF example](examples/hello-light-scroll.gif)
 
 ```bash
 # MP4 video (requires ffmpeg)
-animated-contribution-graph-message -m "HELLO" -f mp4
+npx animated-contribution-graph-message -m "HELLO" -f mp4
 ```
 
 ### Requirements
 
 - **SVG output**: No additional dependencies
-- **GIF/WebP/MP4 output**: Requires [ffmpeg](https://ffmpeg.org/) to be installed
+- **GIF/WebP/MP4 output**: Requires [ffmpeg](https://ffmpeg.org/) to be installed and available on PATH
 
 ## Testing
 
 ```bash
-cargo test
+npm test
 ```
