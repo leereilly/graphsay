@@ -71,7 +71,11 @@ npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t light
 npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t both
 ```
 
-![Both themes scroll](examples/hello-world-both-scroll.gif)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="examples/hello-dark-scroll.gif">
+  <source media="(prefers-color-scheme: light)" srcset="examples/hello-light-scroll.gif">
+  <img alt="Both themes scroll" src="examples/hello-light-scroll.gif">
+</picture>
 
 ```bash
 # Static centered text (dark theme)
@@ -99,10 +103,14 @@ npx animated-contribution-graph-message -m "HELLO" -f gif -t light
 npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --no-transparent
 ```
 
+![Non-transparent dark](examples/hello-world-dark-no-transparent.gif)
+
 ```bash
 # MP4 video (requires ffmpeg)
 npx animated-contribution-graph-message -m "HELLO" -f mp4
 ```
+
+![MP4 example](examples/hello-mp4.gif)
 
 ### Requirements
 
@@ -114,3 +122,7 @@ npx animated-contribution-graph-message -m "HELLO" -f mp4
 ```bash
 npm test
 ```
+
+## License
+
+[MIT](LICENSE)
