@@ -1,5 +1,13 @@
 # Animated Contribution Graph Message
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="contribution-graph.svg">
+    <source media="(prefers-color-scheme: light)" srcset="contribution-graph.svg">
+    <img alt="Animated contribution graph message" src="contribution-graph.svg">
+  </picture>
+</p>
+
 Generate animated GitHub-style contribution graph messages as SVG, GIF, WebP, or MP4.
 
 ## Installation

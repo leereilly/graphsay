@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="739" height="95" viewBox="0 0 739 95">
 <style>
 :root {
-  --bg: #ffffff;
   --c0: #ebedf0;
   --c1: #9be9a8;
   --c2: #40c463;
@@ -10,7 +9,6 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d1117;
     --c0: #161b22;
     --c1: #01311f;
     --c2: #034525;
@@ -19,7 +17,6 @@
   }
 }
 </style>
-  <rect x="0" y="0" width="739" height="95" fill="var(--bg)" rx="0" ry="0"/>
   <rect x="0" y="0" width="11" height="11" rx="2" ry="2" fill="#ebedf0">
     <animate attributeName="fill" dur="17.55s" repeatCount="1" fill="freeze" keyTimes="0.0000;0.4530;0.4615;0.4872;0.4957;0.5043;0.5128;0.5214;0.5299;0.5385;0.5470;0.5556;0.5641;0.6068;0.6154;0.6667;0.6752;0.6838;0.6923;0.7436;0.7521;0.7778;0.7863;0.8034;0.8120;0.8205;0.8291;0.8462;0.8547;0.8632;0.8718;0.8803;0.8974;0.9060;0.9487;0.9573;0.9658;0.9744;0.9829;1.0000" values="#ebedf0;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#40c463;#40c463;#40c463;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#40c463;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#40c463;#40c463;#ebedf0;#40c463;#40c463;#40c463;#40c463;#ebedf0;#40c463;#ebedf0;#40c463;#40c463;#40c463;#40c463;#ebedf0;#ebedf0" calcMode="discrete"/>
   </rect>
