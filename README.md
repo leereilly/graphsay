@@ -111,7 +111,7 @@ npx animated-contribution-graph-message -m "HELLO WORLD" -f svg -t dark --no-tra
 npx animated-contribution-graph-message -m "HELLO" -f mp4
 ```
 
-![MP4 example](examples/hello-mp4.mp4)
+➡️ [Output](examples/hello-mp4.mp4)
 
 ### Requirements
 
